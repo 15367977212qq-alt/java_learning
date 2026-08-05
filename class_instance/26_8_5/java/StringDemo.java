@@ -1,19 +1,24 @@
 public class StringDemo {
+
     public static void main(String[] args) {
         String txt1 = "Java";
         String txt2 = "Java";
         String txt3 = new String("Java");
 
-        System.out.println(txt1 == txt2);//返回false，因为txt1跟txt2的指向地址相同
-        System.out.println(txt1 == txt3);//返回false，因为txt1跟txt3的指向地址不同相同
-        System.out.println(txt1.equals(txt3));//返回true，因为txt1跟txt3的变量内容相同
+        // true：两个字符串字面量通常引用常量池中的同一个对象
+        System.out.println(txt1 == txt2);
 
-        StringBuilder txt4 = new StringBuilder(1024);
-        txt4.append("用户ID：1001");
-        txt4.append(",用户名：Tom,");
-        txt4.append("状态：ACTIVE");
-        System.out.println(txt4.toString());
+        // false：txt3 是显式创建的新对象
+        System.out.println(txt1 == txt3);
 
+        // true：String 重写了 equals，比较字符串内容
+        System.out.println(txt1.equals(txt3));
 
+        StringBuilder builder = new StringBuilder();
+        builder.append("用户ID：1001");
+        builder.append("，用户名：Tom");
+        builder.append("，状态：ACTIVE");
+
+        System.out.println(builder);
     }
 }
