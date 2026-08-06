@@ -6,9 +6,14 @@ public class User {
     private  Integer age;
     private  String status;
 
-    public User(Long id, String username, Integer age, String active){}
+    public User(Long id, String username, Integer age, String active){
+        this.id = id;
+        this.username = username;
+        this.age = age;
+        this.status = active;
+    }
 
-    public User(String username,Integer age,String status){}
+    public User(){}
 
     public Long getId() {
         return id;
@@ -52,7 +57,7 @@ public class User {
 
 
         User other = (User) obj;
-        return this.id.equals(other.id);
+        return Objects.equals(id,other.id);
 
     }
     @Override
