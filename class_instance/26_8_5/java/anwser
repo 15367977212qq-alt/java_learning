@@ -1,0 +1,15 @@
+### 1
+user1 == user2
+a: 比较两个变量的指向地址是否相同
+user1.equals(user2)
+a: 比较两个变量的指向地址是否相同
+user1.hashCode()
+使用user1的hashcode定位user1的位置
+Objects.equals(a, b)
+利用重写的equals方法比较a与b的值
+
+### 2
+
+返回：true a与b所指向地址相同
+     false a与c所指向地址不同
+     false a与c所指向地址不同
