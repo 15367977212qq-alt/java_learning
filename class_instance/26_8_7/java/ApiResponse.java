@@ -5,12 +5,18 @@ public class ApiResponse<T> {
 
     public ApiResponse() {}
 
-    public ApiResponse(String code, String message, T data) {}
+    public ApiResponse(String code, String message, T data) {
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
 
     public String getCode() {
         return code;
     }
-    public void setCode(String code) {}
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public String getMessage() {
         return message;
@@ -28,8 +34,8 @@ public class ApiResponse<T> {
         this.data = data;
     }
 
-    public static <T> ApiResponse<T> success(T data){
-        return new ApiResponse(
+    public static <T> ApiResponse<T> success(T data) {
+        return new ApiResponse<>(
                 "SUCCESS",
                 "操作成功",
                 data

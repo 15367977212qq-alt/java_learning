@@ -1,22 +1,38 @@
 1. Java泛型解决了什么问题？
-用于解决ArrayList需要根据不同的数据类型创建不同的ArrayList方法
+   泛型让类、接口、方法能够复用不同类型，
+   同时在编译期进行类型检查，
+   减少强制类型转换和运行时类型错误。
 
 2. T和ID是Java固定的数据类型吗？
 不是，T和ID可以是任何你新建的类，但不能是基本类型
 
 3. List<User>为什么比原始List更安全？、
-不知道
+**List<User>在编译阶段就限制元素必须是User类型，
+   错误类型无法随意加入。
+
+读取时直接得到User，不需要从Object强制转换，
+因此减少ClassCastException风险。**
 
 4. 泛型类和泛型方法有什么区别？
-不知道
+   泛型类：
+
+public class ApiResponse<T>
+
+T对整个类的实例方法和字段有效。
+
+泛型方法：
+
+public static <T> ApiResponse<T> success(T data)
+
+这个 T 是这个方法自己声明的，只在方法范围内使用。
 5. public static <T> ApiResponse<T> success(T data)
    中三个T分别代表什么？
 第一个T 代表该方法接收的数据类型是T类型
 第二个T 代表这个方法内部的参数是T类型
-第三个T 代表传入的参数是T类型
+第三个T 方法参数data的类型是T
 
 6. Repository<User, Long>中的User和Long分别表示什么？
-User 指的是User user = new User(); 中的user实例
+User 指的是User user = new User(); 中的User类型的数据
 Long 是 id
 
 7. Optional解决了什么问题？
@@ -29,9 +45,33 @@ Long 是 id
 这样就失去了使用Optional的意义
 
 10. orElse()和orElseGet()有什么区别？
+    optional.orElse(createUser())
 
+createUser() 会先执行。
+
+而：
+
+optional.orElseGet(() -> createUser())
+
+只有Optional为空时才执行。
+
+所以默认对象创建成本较大时，orElseGet()更合适。
 11. orElseThrow()适合什么业务场景？
+    修改用户
+    删除用户
+    查询用户详情
 
+这些业务要求目标用户必须存在。
+
+所以：
+
+findUser(id)
+.orElseThrow(
+() -> new BusinessException(
+"USER_NOT_FOUND",
+"用户不存在"
+)
+);
 12. 什么是函数式接口？
 接口中只有一个抽象方法，可以使用lambda表达式调用接口
 
@@ -44,5 +84,36 @@ Service层是业务逻辑层，用于声明方法的内部逻辑
 Repository是数据存储层，用于存放数据
 
 15. 为什么Repository可以返回null，
-    而Service需要将其转换成Optional或BusinessException？
-不知道
+    Repository可以返回null
+    Service再转换Optional/BusinessException
+
+因为职责不同：
+
+Repository：
+“数据库有没有查询到记录？”
+
+Service：
+“业务上这个结果意味着什么？”
+
+例如数据库没找到User：
+
+Repository：
+
+return null;
+
+Service场景A：
+
+“用户可能不存在”
+
+return Optional.empty();
+
+Service场景B：
+
+“用户必须存在”
+
+throw new BusinessException(
+"USER_NOT_FOUND",
+"用户不存在"
+);
+
+这就是数据事实和业务语义的区别。

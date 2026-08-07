@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -6,6 +8,8 @@ public class Day05Demo {
         User user1 = new User(1L,"Tom",20,"ACTIVE");
         User user2 = new User(2L,"Jack",16,"ACTIVE");
         User user3 = new User(3L,"Alice",25,"DISABLED");
+
+        List<User> users = new ArrayList<>();
 
         Repository<User,Long> repository = new UserRepository();
         UserService userService = new UserService(repository);
@@ -21,7 +25,7 @@ public class Day05Demo {
         );
 
         //test5
-        Optional<User> result2 = userService.findUser(4L);
+        Optional<User> result2 = userService.findUser(3L);
         System.out.println(result2.isPresent());
 
         //test6
@@ -33,10 +37,33 @@ public class Day05Demo {
         }
 
         List<User> adults = userService.filterUsers(
-                (List<User>) repository,
+                users ,
                 user -> user.getAge() != null
                     && user.getAge() >= 18
         );
+
+        List<User> activeUsers = userService.filterUsers(
+                users,
+                user -> "ACTIVE".equals(user.getStatus())
+        );
+
+        List<User> nameUsers = userService.filterUsers(
+                users,
+                user -> user.getUsername() != null
+                        && user.getUsername()
+                        .toLowerCase()
+                        .contains("a")
+        );
+
+        ApiResponse<User> response =
+                ApiResponse.success(user1);
+
+        System.out.println(response);
+
+        ApiResponse<List<User>> listResponse =
+                ApiResponse.success(adults);
+
+        System.out.println(listResponse);
 
 
     }
