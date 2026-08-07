@@ -1,9 +1,6 @@
 public class BusinessException extends RuntimeException {
 
-    public BusinessException(String code, String message) {
-        super(message);
-        this.code = code;
-    }
+
 
     private final String code;
 
@@ -11,7 +8,10 @@ public class BusinessException extends RuntimeException {
         return code;
     }
 
-
+    public BusinessException(String code, String message) {
+        super(message);
+        this.code = code;
+    }
 
 }
 
