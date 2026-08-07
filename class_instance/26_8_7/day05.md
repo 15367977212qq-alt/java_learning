@@ -60,11 +60,8 @@ optional.orElseGet(() -> createUser())
     修改用户
     删除用户
     查询用户详情
-
 这些业务要求目标用户必须存在。
-
 所以：
-
 findUser(id)
 .orElseThrow(
 () -> new BusinessException(
@@ -76,12 +73,20 @@ findUser(id)
 接口中只有一个抽象方法，可以使用lambda表达式调用接口
 
 13. Lambda表达式和函数式接口有什么关系？
-函数式接口可以使用lambda表达式调用
+    函数式接口只有一个抽象方法，Lambda表达式可以用来提供这个抽象方法的具体实现。
 
 
 14. Repository层和Service层的职责有什么区别？
-Service层是业务逻辑层，用于声明方法的内部逻辑
-Repository是数据存储层，用于存放数据
+Repository是数据访问层/数据访问抽象，
+负责保存、查询、修改、删除等数据操作。
+真正存储数据的是：
+今天 → List<User>
+以后 → MySQL数据库
+即：
+Repository ≠ 数据库
+Repository
+↓ 访问
+数据库
 
 15. 为什么Repository可以返回null，
     Repository可以返回null

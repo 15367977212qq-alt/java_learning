@@ -10,6 +10,9 @@ public class Day05Demo {
         User user3 = new User(3L,"Alice",25,"DISABLED");
 
         List<User> users = new ArrayList<>();
+        users.add(user1);
+        users.add(user2);
+        users.add(user3);
 
         Repository<User,Long> repository = new UserRepository();
         UserService userService = new UserService(repository);
@@ -25,12 +28,12 @@ public class Day05Demo {
         );
 
         //test5
-        Optional<User> result2 = userService.findUser(3L);
+        Optional<User> result2 = userService.findUser(30L);
         System.out.println(result2.isPresent());
 
         //test6
         try{
-            userService.findUser(100L);
+            userService.getRequiredUser(100L);
         }catch(BusinessException e){
             System.out.println(e.getCode());
             System.out.println(e.getMessage());
@@ -65,6 +68,8 @@ public class Day05Demo {
 
         System.out.println(listResponse);
 
-
+        System.out.println("成年人：" + adults);
+        System.out.println("ACTIVE用户：" + activeUsers);
+        System.out.println("名字包含a：" + nameUsers);
     }
 }
