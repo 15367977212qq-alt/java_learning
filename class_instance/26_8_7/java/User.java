@@ -42,7 +42,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "";
+        return "user{" + username + ", id=" + id + ", age=" + age + ", status=" + status + "}";
     }
 
     @Override
