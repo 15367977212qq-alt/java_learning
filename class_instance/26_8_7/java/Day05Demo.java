@@ -9,17 +9,13 @@ public class Day05Demo {
         User user2 = new User(2L,"Jack",16,"ACTIVE");
         User user3 = new User(3L,"Alice",25,"DISABLED");
 
-        List<User> users = new ArrayList<>();
-        users.add(user1);
-        users.add(user2);
-        users.add(user3);
-
         Repository<User,Long> repository = new UserRepository();
         UserService userService = new UserService(repository);
         repository.save(user1);
         repository.save(user2);
         repository.save(user3);
 
+        List<User> users = userService.findAllUser();
         //test4
         Optional<User> result = userService.findUser(1L);
         //为什么这里可以使用lambda格式

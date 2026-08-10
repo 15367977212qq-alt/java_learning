@@ -1,7 +1,5 @@
 public class BusinessException extends RuntimeException {
 
-
-
     private final String code;
 
     public String getCode() {

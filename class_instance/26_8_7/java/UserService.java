@@ -22,6 +22,10 @@ public class UserService {
         );
     }
 
+    public List<User> findAllUser(){
+        return repository.findAll();
+    }
+
     public User getRequiredUser(Long id){
         return findUser(id).orElseThrow(
                 () -> new BusinessException(
@@ -42,5 +46,7 @@ public class UserService {
             }
         }return result;
     }
+
+
 
 }

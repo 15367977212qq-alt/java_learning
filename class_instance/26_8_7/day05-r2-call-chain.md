@@ -1,0 +1,40 @@
+userService.getRequiredUser(100L);
+
+Day05Demo
+↓ 调用了UserService
+
+UserService
+↓ 调用了getRequiredUser这个方法
+
+Repository<User, Long>
+↓ 实际执行类为UserRepository
+
+UserRepository
+↓ 查询传入的100L
+
+List<User>
+↓ 没找到后返回什么？
+    没找到会返回null
+
+findUser
+↓
+
+Optional.empty()
+↓
+
+???
+↓
+
+BusinessException
+
+
+反方向路程为
+List<User>
+→ UserRepository
+→ Repository
+→ UserService
+→ Day05Demo
+List<User> 接受到查询结果为null交由UserRepository返回
+然后通过Repostiory返回到UserService,最终在Demo中被捕获到异常，
+最终打印出来
+

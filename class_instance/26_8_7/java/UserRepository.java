@@ -21,4 +21,8 @@ public class UserRepository implements Repository<User, Long>{
         return null;
     }
 
+    public List<User> findAll(){
+        return new ArrayList<>(users);
+    }
+
 }

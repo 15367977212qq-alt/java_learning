@@ -4,7 +4,13 @@
    减少强制类型转换和运行时类型错误。
 
 2. T和ID是Java固定的数据类型吗？
-不是，T和ID可以是任何你新建的类，但不能是基本类型
+   T和ID是泛型类型参数，不是Java固定类型。
+
+使用时可以替换为任何合适的引用类型，例如：
+User、String、Long、Integer、List<User>等。
+
+不能直接使用int、long等基本类型，
+需要使用Integer、Long等包装类型。
 
 3. List<User>为什么比原始List更安全？、
 **List<User>在编译阶段就限制元素必须是User类型，
@@ -39,8 +45,19 @@ Long 是 id
 解决了在查询数据时提前声明了查询结果可能为空
 
 8. Optional.of()和Optional.ofNullable()有什么区别？
-前者不会声明查询结果可能为空，后者提前告诉了调用者返回的结果可能为null
+   正确区别：
 
+Optional.of(user)
+要求：
+user不能为null
+否则：
+NullPointerException
+而：
+Optional.ofNullable(user)
+允许：
+user == null
+null会被转换成：
+Optional.empty()
 9. 为什么不建议直接使用Optional.get()？
 这样就失去了使用Optional的意义
 
