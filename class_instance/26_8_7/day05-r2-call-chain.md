@@ -17,13 +17,13 @@ List<User>
     没找到会返回null
 
 findUser
-↓
-
+↓   将null转为Optional.empty
+    
 Optional.empty()
-↓
+↓   
 
-???
-↓
+orElseThrow
+↓ 查询不到 抛出异常
 
 BusinessException
 
