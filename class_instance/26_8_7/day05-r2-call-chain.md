@@ -29,11 +29,21 @@ BusinessException
 
 
 反方向路程为
-List<User>
-→ UserRepository
-→ Repository
-→ UserService
-→ Day05Demo
+Jack
+↓
+UserRepository return Jack
+↓
+回到 UserService.findUser()
+↓
+Optional.ofNullable(Jack)
+↓
+Optional<User>
+↓
+Service return Optional<User>
+↓
+Day05Demo
+↓
+result
 List<User> 接受到查询结果为null交由UserRepository返回
 然后通过Repostiory返回到UserService,最终在Demo中被捕获到异常，
 最终打印出来

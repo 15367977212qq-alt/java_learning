@@ -22,7 +22,7 @@ public class UserRepository implements Repository<User, Long>{
     }
 
     public List<User> findAll(){
-        return new ArrayList<>(users);
+        return new ArrayList<>(users );
     }
 
 }
