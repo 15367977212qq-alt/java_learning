@@ -30,8 +30,8 @@ public class Day06Demo {
                         && user.getAge() >= 18
                 ).collect(Collectors.toList());
         /*
-            for循环对应users.stream()
-            if条件对应.filter()中括号内的内容
+            users.stream()用于创建数据处理流水线
+            if条件对应.filter()中括号内的内容也就是循环中判断的部分
             result.add(user)最终被toList()替代
          */
 
@@ -85,11 +85,12 @@ public class Day06Demo {
         /*
         业务场景组合
          */
-        List<String> ActiveUsernames = activeUsers.stream()
+        List<String> activeUsernames = users.stream()
+                .filter(user -> "ACTIVE".equals(user.getStatus()))
                 .map(User::getUsername)
                 .sorted()
                 .collect(Collectors.toList());
 
-        System.out.println("所有的ACTIVE用户：" + ActiveUsernames);
+        System.out.println("所有的ACTIVE用户：" + activeUsernames);
     }
 }
