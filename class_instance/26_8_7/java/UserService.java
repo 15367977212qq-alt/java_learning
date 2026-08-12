@@ -26,7 +26,7 @@ public class UserService {
         return repository.findAll();
     }
 
-    public User getRequiredUser(Long id){
+        public User getRequiredUser(Long id){
         return findUser(id).orElseThrow(
                 () -> new BusinessException(
                         "USER_NOT_FOUND",
