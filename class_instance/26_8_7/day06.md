@@ -2,15 +2,15 @@
 Stream API 主要是用于对集合数据进行声明式的筛选，转换，排序，聚合等流水线处理
 2. stream()之后得到的是List还是Stream？
    List<User>
-   ↓
+   ↓ stream()
    Stream<User>
-   ↓ filter
+   ↓ filter()
    Stream<User>
    ↓ map(User::getUsername)
    Stream<String>
-   ↓ sorted
+   ↓ sorted()
    Stream<String>
-   ↓ toList
+   ↓ toList()
    List<String>
 
 3. filter()接收的Lambda最终要返回什么类型？

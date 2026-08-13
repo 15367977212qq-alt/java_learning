@@ -1,12 +1,12 @@
 public class UserVO {
     private Long id;
     private String username;
-    private String cratedAt;
+    private String createdAt;
 
-    public UserVO(Long id, String username, String cratedAt) {
+    public UserVO(Long id, String username, String createdAt) {
         this.id = id;
         this.username = username;
-        this.cratedAt = cratedAt;
+        this.createdAt = createdAt;
     }
 
     public Long getId() {
@@ -19,11 +19,11 @@ public class UserVO {
     public void setUsername(String userame) {
         this.username = userame;
     }
-    public String getCratedAt() {
-        return cratedAt;
+    public String getCreatedAt() {
+        return createdAt;
     }
-    public void setCratedAt(String cratedAt) {
-        this.cratedAt = cratedAt;
+    public void setCreatedAt(String cratedAt) {
+        this.createdAt = cratedAt;
     }
 
 
