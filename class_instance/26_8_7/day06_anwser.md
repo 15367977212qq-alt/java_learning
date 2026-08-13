@@ -59,11 +59,11 @@ List<User> users;
 List<String>
 
 请写出完整 Stream 代码。
-List<String> usernameof3 = users,stream()
+List<String> usernameof3 = users.stream()
                     .filter(user -> "ACTIVE".equals(user.getStatus())
                                     && user.getAge() >= 18)
                     .map(User::getUsername)
-                    .sorted()
+                    .sorted(Comparator.reverseOrder())
                     .toList();
 
 
@@ -79,7 +79,7 @@ result.add(user);
 
 分别说明传统写法中的：
 
-for                 对应Stream（）流式传输
+for                 整个 Stream 流水线共同完成传统 for + if + add 的工作。
 if                 对应filter筛选
 result.add()    对应.collect
 最终result  对应着toList

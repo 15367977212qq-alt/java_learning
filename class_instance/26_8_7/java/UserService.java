@@ -1,11 +1,14 @@
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class UserService {
 
     private final Repository<User, Long> repository;
-
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     public UserService(
             Repository<User, Long> repository
     ){
@@ -45,6 +48,17 @@ public class UserService {
                 result.add(user);
             }
         }return result;
+    }
+
+    public List<UserVO> getActiveUserVOs(){
+
+        return repository.findAll().stream()
+                .filter(user -> "ACTIVE".equals(user.getStatus()))
+                .map(user -> new UserVO(user.getId()
+                        ,user.getUsername()
+                        ,user.getCreatedAt().format(formatter)))
+                .sorted(Comparator.comparing(UserVO::getUsername).reversed())
+                .collect(Collectors.toList());
     }
 
 

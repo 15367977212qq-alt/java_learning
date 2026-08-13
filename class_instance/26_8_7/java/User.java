@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 
 public class User {
@@ -5,15 +7,24 @@ public class User {
     private  String username;
     private  Integer age;
     private  String status;
+    private LocalDateTime createedAt;
 
-    public User(Long id, String username, Integer age, String active){
+
+    public User(Long id, String username, Integer age, String active, LocalDateTime createdAt) {
         this.id = id;
         this.username = username;
         this.age = age;
         this.status = active;
+        this.createedAt = LocalDateTime.now();
     }
 
-    public User(){}
+    public User(Long id, String username, Integer age, String active) {
+        this.id = id;
+        this.username = username;
+        this.age = age;
+        this.status = active;
+
+    }
 
     public Long getId() {
         return id;
@@ -39,7 +50,7 @@ public class User {
     public void setStatus(String status) {
         this.status = status;
     }
-
+    public LocalDateTime getCreatedAt() {return createedAt;}
     @Override
     public String toString() {
         return "user{" + username + ", id=" + id + ", age=" + age + ", status=" + status + "}";
