@@ -1,6 +1,3 @@
-import com.sun.corba.se.impl.activation.RepositoryImpl;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -15,7 +12,7 @@ public class Day07Demo {
                 "ACTIVE",
                 LocalDateTime.now()
         );
-        Repository repo = new UserRepository();
+        Repository<User,Long> repo = new UserRepository();
         UserService userService = new UserService(repo);
         repo.save(user);
         LocalDateTime now = LocalDateTime.now();

@@ -1,8 +1,18 @@
 1. Stream API主要解决什么问题？
 Stream API 主要是用于对集合数据进行声明式的筛选，转换，排序，聚合等流水线处理
 2. stream()之后得到的是List还是Stream？
-得到的是Stream<User>
-3. 
+   List<User>
+   ↓
+   Stream<User>
+   ↓ filter
+   Stream<User>
+   ↓ map(User::getUsername)
+   Stream<String>
+   ↓ sorted
+   Stream<String>
+   ↓ toList
+   List<String>
+
 3. filter()接收的Lambda最终要返回什么类型？
 filter()中的Lambda最终必须返回boolean类型
 

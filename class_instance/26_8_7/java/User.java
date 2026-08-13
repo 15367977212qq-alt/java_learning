@@ -7,7 +7,7 @@ public class User {
     private  String username;
     private  Integer age;
     private  String status;
-    private LocalDateTime createedAt;
+    private LocalDateTime createdAt;
 
 
     public User(Long id, String username, Integer age, String active, LocalDateTime createdAt) {
@@ -15,7 +15,7 @@ public class User {
         this.username = username;
         this.age = age;
         this.status = active;
-        this.createedAt = LocalDateTime.now();
+        this.createdAt = createdAt;
     }
 
     public User(Long id, String username, Integer age, String active) {
@@ -50,7 +50,7 @@ public class User {
     public void setStatus(String status) {
         this.status = status;
     }
-    public LocalDateTime getCreatedAt() {return createedAt;}
+    public LocalDateTime getCreatedAt() {return createdAt;}
     @Override
     public String toString() {
         return "user{" + username + ", id=" + id + ", age=" + age + ", status=" + status + "}";

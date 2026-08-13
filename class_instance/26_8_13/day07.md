@@ -8,7 +8,7 @@ Stream<User> 如何通过 map() 变成 Stream<UserVO>？
 
 1. localdate 仅有日期 ， localdatetime 输出的是日期和时间
 2. MM是月份 mm是分钟
-3. 返回自定义时间类型
+3. 返回String类型
 4. Entity对应持久化的数据结构，Dto用于不同层之间传输所需的数据，VO用于接口返回数据给前端
 5. 如果直接把全量字段返回给前端会导致数据泄露
 6. 通过user -> new UserVo(get...)通过构造方法将user的id，name，createdat传给uservo
