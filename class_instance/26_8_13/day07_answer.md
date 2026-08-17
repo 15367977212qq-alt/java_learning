@@ -9,7 +9,7 @@ user.getCreatedAt().format(formatter);
 ④ 为什么User Entity里可以使用LocalDateTime，
 而UserVO里可以选择String？
 1. 返回localDatetime类型的数据
-2. 返回自定义格式的时间类型
+2. 返回自定义格式的时间类型的String类型数据
 3. MM代表月份 mm代表分钟
 4. 类内部的初始定义了数据类型
 
@@ -36,8 +36,8 @@ List<User> users;
 UserService userservice = new UserService();
 List<UserVO> uvo = users.stream()
                     .filter(user -> "ACTIVE".equals(user.getstatus())
-                    .map(user -> new UserVO(user.getid(),user.getname(),user.getCreatatAt().format(formatter))
-                    .sorted(Comparator.reverseOrder(uservo::getname()))
+                    .map(user -> new UserVO(user.getid(),user.getUsername(),user.getCreatatAt().format(formatter))
+                    .sorted(Comparator.comparing(UserVO::getUsername()))
                     .toList()
 
 List<User>
@@ -88,5 +88,5 @@ Day06 间隔复习
 List<String> username = users.stream()
                 .filter(user -> "ACTIVE".equals(user.getStatus()) && user.getAge() >= 18)
                 .map(User::getUserName)
-                .sorted()
+                .sorted(Comparator.reservedOrder())
                 .toList()
