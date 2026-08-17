@@ -21,12 +21,13 @@ public class Day08Demo {
         roles.add("ADMIN");
         roles.add("USER");
         /*
-        Set类型的集合内部元素不可重复，所以只有四个元素
+        Set类型的集合内部元素不可重复，所以只有三个元素
          */
         Map<Long,User> userMap = new HashMap<>();
         userMap.put(1L,u1);
         userMap.put(2L,u2);
-        userMap.get(2L);
+        userMap.put(2l,u3);
+        System.out.println(userMap.get(2L));
         userMap.containsKey(3L);
         userMap.remove(1L);
         userMap.putAll(userMap);
