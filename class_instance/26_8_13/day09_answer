@@ -1,0 +1,36 @@
+u1 == u2 → false == 比较的是引用类型的地址
+u1.equals(u2) → true    u1跟u2的id数值是相同的
+u1.hashCode() == u2.hashCode() → true   User的hashCode只基于id，u1跟u2的id相同返回true
+
+2. 输出是1 存入u2时先对u2的hashcode进行判断，发现跟u1的hashcode想同，-》进一步通过euqals跟u1的id进行判断
+还是相同，最终去重只保留一个
+3. map.size 输出1
+map.get(u1)输出 （u2,"vip用户"）对key的判断时利用了hashcode和equasl，u1跟u2因为id相同被认定为同一个key所以u1的value被u2顶了
+
+4.public class Product {
+
+      private String productCode;
+      private String name;
+
+      @Override
+      public boolean equals(Object o) {
+            if (this == o) {
+                        return true;
+                    }
+
+                    if (o == null || getClass() != o.getClass()) {
+                        return false;
+                    }
+            Product other = (Product) o;
+            return Objects.equals(productCode,o.productCode);
+      }
+
+      @Override
+      public int hashCode() {
+          return Objects.hash(productCode);
+      }
+  }
+ 5,
+不应该为了场景B直接修改 User.equals() 的实现。
+
+ 6. 我会采用map，key是状态类型，value是有这个状态类型的总用户数
