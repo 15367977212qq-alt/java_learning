@@ -1,4 +1,6 @@
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class Day09Demo {
@@ -10,5 +12,10 @@ public class Day09Demo {
         Set<User> users = new HashSet<>();
         users.add(u1);
         users.add(u2);
+        Map<User,String> map = new HashMap<>();
+        map.put(u1,"First");
+        map.put(u2,"Second");
+        System.out.println(map.size());
+        System.out.println(map.get(u1));
     }
 }

@@ -57,17 +57,17 @@ public class User {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
 
-        if (obj == null || getClass() != obj.getClass()) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
 
 
-        User other = (User) obj;
+        User other = (User) o;
         return Objects.equals(id,other.id);
 
     }

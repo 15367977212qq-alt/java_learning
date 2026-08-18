@@ -7,7 +7,9 @@ User 作为 HashMap 的 Key 时，为什么也必须注意 equals/hashCode？
 1. == 判断基本类型时，比较的是值，比较对象时，比较的是两者是不是同一个对象
 equals()默认状态下比较的是引用地址，重写后可以比较具体的值
 2. hashset 需要实现查重功能，所以就必须实现新插入元素与已有元素的比较
-hashcode用于返回插入数据的索引值，equals用于判断两个元素是否相同
+hashcode用于hashCode()
+   → 返回哈希值
+   → HashMap/HashSet再根据哈希值计算存储位置，equals用于判断两个元素是否相同
 3. equals() 相等的对象必须有相同 hashCode()，是为了保证它们在 HashMap、HashSet
    等哈希结构里会被放到/找到同一个位置。
 4. 主要比较两个User类的id数值是否相同
