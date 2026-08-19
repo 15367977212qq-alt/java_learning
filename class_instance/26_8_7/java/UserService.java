@@ -69,4 +69,28 @@ public class UserService {
 
 
     }
+
+    public static Map<String,Integer> countByStatus(List<User> users){
+        Map<String,Integer> countmap = new HashMap<>();
+        for (User user : users) {
+            String status = user.getStatus();
+            countmap.put(status,countmap.getOrDefault(status,0) + 1);
+
+        }
+        return countmap;
+    }
+
+    public static  Map<String,List<User>> groupByStatus(List<User> users){
+        Map<String,List<User>> result = new HashMap<>();
+        for(User user: users){
+            result.computeIfAbsent(user.getStatus() ,k -> new ArrayList<>()).add(user);
+        }
+        if(result.containsKey("ACTIVE")){
+            return result;
+        }
+        if(result.containsKey("INACTIVE")){
+            return result;
+        }
+        return result;
+    }
 }
